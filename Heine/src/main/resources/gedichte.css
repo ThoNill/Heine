@@ -1,0 +1,25 @@
+.gedichte {
+ background: #CCF;
+}
+
+.gedicht {
+	margin-top: 2em;
+}
+
+.gedichttitel {
+font-size: 40px;
+}
+
+.strophe {
+	border: 0;
+	margin-top: 2em;
+}
+
+.vers {
+    line-height: 1em;
+    font-size: 30px;
+	border: 0;
+	margin: 0;
+    padding: 0 ;
+    height: 1em;
+}
