@@ -8,10 +8,10 @@ import tho.nill.heine.beans.Strophe;
 import tho.nill.heine.beans.Vers;
 
 public class TexProzessor extends AbstractProzessor {
-	private boolean startStrophe=true;
-	
-	public TexProzessor(Charset charset,String outDir) {
-		super(charset,".tex",outDir);
+	private boolean startStrophe = true;
+
+	public TexProzessor(Charset charset, String outDir) {
+		super(charset, ".tex", outDir);
 	}
 
 	private String quotierungBeachten(String text) {
@@ -51,15 +51,21 @@ public class TexProzessor extends AbstractProzessor {
 		a("\\pagestyle{plain}\n");
 		a("\\usepackage{german}\n");
 		a("\\usepackage{hyperref}\n");
-
-		
-		a("\\title{"+ d.getTitel()+"}\n");
-		a("\\author{" + d.getAutor() +"}\n");
-		if (d.getWidmung()!=null && !d.getWidmung().isBlank()) {
-			a("\\dedication{" + d.getWidmung() +"}\n");
-		}
 		a("\\begin{document}\n");
+		a("\\begin{titlepage}\n");
+		a("\\begin{center}\n");
+		a("\\vfill\n");
+		a("\\Huge\\textbf{" + d.getTitel() + "}\\\\\n");
+		a("\\large\\textbf{}\\\\\n");
+		a("\\large\\textit{" + d.getAutor() + "}\\\\\n");
+		if (d.getWidmung() != null && !d.getWidmung().isBlank()) {
+			a("\\large\\textit{" + d.getWidmung() + "}\\\\\n");
+		}
+		a("\\vfill\n");
+		a("\\end{center}\n");
+		a("\\end{titlepage}\n");
 		a("\\maketitle\n");
+		a("\\newpage\n");
 	}
 
 	@Override
@@ -96,7 +102,7 @@ public class TexProzessor extends AbstractProzessor {
 	@Override
 	public void startStrophe(Strophe s) {
 		a("\n");
-		startStrophe=true;
+		startStrophe = true;
 	}
 
 	@Override
@@ -116,7 +122,7 @@ public class TexProzessor extends AbstractProzessor {
 		}
 
 		a(quotierungBeachten(text));
-		startStrophe=false;
+		startStrophe = false;
 	}
 
 	@Override
@@ -126,8 +132,7 @@ public class TexProzessor extends AbstractProzessor {
 
 	@Override
 	public TexProzessor start() {
-		return this; 
+		return this;
 	}
-
 
 }
